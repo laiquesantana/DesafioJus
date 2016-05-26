@@ -6,6 +6,7 @@ using System.Web.Services;
 
 namespace WebApplication1
 {
+
     /// <summary>
     /// Summary description for WebService1
     /// </summary>
@@ -16,11 +17,30 @@ namespace WebApplication1
     // [System.Web.Script.Services.ScriptService]
     public class WebService1 : System.Web.Services.WebService
     {
+        string semacento;
+        public static class Suporte
+        {
+            public static string RemoveAcentos(string texto)
+            {
+                if (texto == null) return string.Empty;
+
+                string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+                string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
+
+                for (int i = 0; i < comAcentos.Length; i++)
+                    texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
+
+                return texto;
+            }
+        }
 
         [WebMethod]
         public string HelloWorld()
         {
-            return "Hello World";
+            
+           
+
+            return semacento= Suporte.RemoveAcentos("OPA DESAÁÁÁFIOO JÚSBRASÍÔ");
         }
     }
 }
