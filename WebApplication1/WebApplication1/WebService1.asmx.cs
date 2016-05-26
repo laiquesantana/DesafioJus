@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Elasticsearch.Net;
+using Nest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+
 
 namespace WebApplication1
 {
@@ -37,9 +40,18 @@ namespace WebApplication1
         [WebMethod]
         public string HelloWorld()
         {
-            
-           
+            var node = new Uri("http://myserver:9200");
+            var settings = new ConnectionSettings(node);
+            var client = new ElasticClient(settings);
 
+                            var nodes = new Uri[]
+                {
+                    new Uri("http://myserver1:9200"),
+                    new Uri("http://myserver2:9200"),
+                    new Uri("http://myserver3:9200")
+                };
+
+           
             return semacento= Suporte.RemoveAcentos("OPA DESAÁÁÁFIOO JÚSBRASÍÔ");
         }
     }
